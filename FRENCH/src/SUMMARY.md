@@ -19,3 +19,5 @@
     - [Les types de données](ch03-02-data-types.md)
 
 - [Utiliser les structures pour structurer des données apparentées](ch05-00-structs.md)
+
+- [Les chemins pour désigner un élément dans l'arborescence de module](ch07-03-paths-for-referring-to-an-item-in-the-module-tree.md)
