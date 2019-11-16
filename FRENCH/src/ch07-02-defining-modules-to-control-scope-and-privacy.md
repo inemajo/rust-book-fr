@@ -83,7 +83,7 @@ fonctions.
 <span class="filename">Fichier : src/lib.rs</span>
 
 <!--
-```rust
+```rust,ignore
 mod front_of_house {
     mod hosting {
         fn add_to_waitlist() {}
