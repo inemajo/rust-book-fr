@@ -102,7 +102,7 @@ mod front_of_house {
 ```
 -->
 
-```rust
+```rust,ignore
 mod salle_a_manger {
     mod accueil {
         fn ajouter_a_la_liste_attente() {}
