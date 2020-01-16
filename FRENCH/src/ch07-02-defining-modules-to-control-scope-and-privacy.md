@@ -15,7 +15,7 @@ focus on modules!
 Dans cette section, nous allons aborder les modules et les autres outils du
 système de modules, à savoir les *chemins* qui nous permettent de nommer les
 éléments; l'utilisation du mot-clé `use` qui importe un chemin dans la portée;
-et le mot-clé `pub` que rend public les éléments. Nous verrons aussi le mot-clé
+et le mot-clé `pub` qui rend publics les éléments. Nous verrons aussi le mot-clé
 `as`, les paquets externes, et l'opérateur glob. Pour commencer, penchons-nous
 sur les modules !
 
@@ -29,7 +29,7 @@ detail and not available for outside use (*private*).
 Les *modules* nous permettent de regrouper le code d'une crate pour une
 meilleure lisibilité et pour la facilité de réutilisation. Les modules
 permettent aussi de gérer la *protection* des éléments, qui précise si un
-élément peut être utilisé à l'extérieur du code (*c'est public*) ou s'il est
+élément peut être utilisé à l'extérieur du module (*c'est public*) ou s'il est
 un constituant interne et n'est pas disponible pour une utilisation externe
 (*c'est privé*).
 
@@ -54,7 +54,7 @@ work in the kitchen, dishwashers clean up, and managers do administrative work.
 -->
 
 Dans le secteur de la restauration, certaines parties d'un restaurant sont
-assimilés à la *salle à manger* et d'autres *aux cuisines*. La partie salle à
+assimilées à la *salle à manger* et d'autres *aux cuisines*. La partie salle à
 manger est l'endroit où se trouvent les clients; c'est l'endroit où les hôtes
 installent les clients, où les serveurs prennent les commandes et encaissent les
 clients, et où les barmans préparent des boissons. Dans la partie cuisines, nous
@@ -143,7 +143,7 @@ accolades autour du corps du module. Dans les modules, nous pouvons avoir
 d'autres modules, comme dans notre cas avec les modules `accueil` et `service`.
 Les modules peuvent aussi contenir des définitions pour d'autres éléments, comme
 des structures, des énumérations, des constantes, des traits, ou des fonctions
-(comme c'est le cas pour ces dernières dans l'encart 7-1).
+(comme c'est le cas dans l'encart 7-1).
 
 <!--
 By using modules, we can group related definitions together and name why
@@ -212,7 +212,7 @@ crate
 7-1</span>
 -->
 
-<span class="caption">Encart 7-2 : L'arborescence du module pour le code de
+<span class="caption">Encart 7-2 : L'arborescence des modules pour le code de
 l'encart 7-1</span>
 
 <!--
@@ -226,12 +226,12 @@ Notice that the entire module tree is rooted under the implicit module named
 `crate`.
 -->
 
-Cette arborescence comment les modules sont imbriqués entre eux (par exemple,
+Cette arborescence montre comment les modules sont imbriqués entre eux (par exemple,
 `accueil` est imbriqué dans `salle_a_manger`). L'arborescence montre aussi que
 certains modules sont les *frères* d'autres modules, ce qui veut dire qu'ils
 sont définis dans le même module (`accueil` et `service` sont définis dans
 `salle_a_manger`). Pour prolonger la métaphore familiale, si le module A est
-compris dans un module B, on dit que le module A est *l'enfant* du module B et
+contenu dans un module B, on dit que le module A est *l'enfant* du module B et
 que ce module B est le *parent* du module A. Notez aussi que tout le module est
 lié au module implicite qui s'appelle `crate`.
 
@@ -242,8 +242,8 @@ you use modules to organize your code. And just like files in a directory, we
 need a way to find our modules.
 -->
 
-L'arborescence de module peut rappeler les dossiers du système de fichier de
+L'arborescence des modules peut rappeler les dossiers du système de fichiers de
 votre ordinateur; et c'est une excellente comparaison ! Comme les dossier dans
-un système de fichier, vous utilisez les modules pour organiser votre code. Et
+un système de fichiers, vous utilisez les modules pour organiser votre code. Et
 comme pour les fichiers dans un dossier, nous avons besoin d'un moyen de trouver
 nos modules.
