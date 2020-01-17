@@ -171,8 +171,8 @@ known as the *module tree*.
 
 Précédemment, nous avons dit que *src/main.rs* et *src/lib.rs* étaient des
 racines de crates. Nous les appelons ainsi car le contenu de chacun de ces
-deux fichiers constituent un module qui s'appelle `crate` à la racine de la
-structure du module de cette crate, aussi appelée *l'arborescence du module*.
+deux fichiers constituent un module qui s'appelle `crate` à la racine de
+*l'arborescence du module*.
 
 <!--
 Listing 7-2 shows the module tree for the structure in Listing 7-1.
@@ -226,14 +226,14 @@ Notice that the entire module tree is rooted under the implicit module named
 `crate`.
 -->
 
-Cette arborescence montre comment les modules sont imbriqués entre eux (par exemple,
-`accueil` est imbriqué dans `salle_a_manger`). L'arborescence montre aussi que
-certains modules sont les *frères* d'autres modules, ce qui veut dire qu'ils
-sont définis dans le même module (`accueil` et `service` sont définis dans
-`salle_a_manger`). Pour prolonger la métaphore familiale, si le module A est
-contenu dans un module B, on dit que le module A est *l'enfant* du module B et
-que ce module B est le *parent* du module A. Notez aussi que tout le module est
-lié au module implicite qui s'appelle `crate`.
+Cette arborescence montre comment les modules sont imbriqués entre eux (par
+exemple, `accueil` est imbriqué dans `salle_a_manger`). L'arborescence montre
+aussi que certains modules sont les *frères* d'autres modules, ce qui veut dire
+qu'ils sont définis dans le même module (`accueil` et `service` sont définis
+dans `salle_a_manger`). Pour prolonger la métaphore familiale, si le module A
+est contenu dans le module B, on dit que le module A est *l'enfant* du module B
+et que ce module B est le *parent* du module A. Notez aussi que tout le module
+implicite `crate` est le parent de toute cette arborescence.
 
 <!--
 The module tree might remind you of the filesystem’s directory tree on your
