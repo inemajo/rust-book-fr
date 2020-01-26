@@ -2,7 +2,7 @@
 ## Paths for Referring to an Item in the Module Tree
 -->
 
-## Les chemins pour désigner un élément dans l'arborescence de module
+## Désigner un élément dans l'arborescence de modules
 
 <!--
 To show Rust where to find an item in a module tree, we use a path in the same
@@ -19,7 +19,7 @@ nous avons besoin de connaître son chemin.
 A path can take two forms:
 -->
 
-Il existe deux types de chemins :
+Il existe deux types de chemins :
 
 <!--
 * An *absolute path* starts from a crate root by using a crate name or a
@@ -30,16 +30,16 @@ Il existe deux types de chemins :
 
 * Un *chemin absolu* qui commence à partir de la racine de la crate en utilisant
   le nom d'une crate, ou le mot `crate`.
-* Un *chemin relatif* qui commence à partir du module courant et qui
-  utilise `self`, `super`, ou un identificateur à l'intérieur du module.
+* Un *chemin relatif* qui commence à partir du module courant et qui utilise
+  `self`, `super`, ou un identificateur à l'intérieur du module.
 
 <!--
 Both absolute and relative paths are followed by one or more identifiers
 separated by double colons (`::`).
 -->
 
-Les chemins absolus et relatifs sont suivis par un ou plusieurs
-identificateurs séparés par `::`.
+Les chemins absolus et relatifs sont suivis par un ou plusieurs identificateurs
+séparés par `::`.
 
 <!--
 Let’s return to the example in Listing 7-1. How do we call the
@@ -55,11 +55,11 @@ in a bit.
 -->
 
 Reprenons notre exemple de l'encart 7-1. Comment utiliserions-nous la fonction
-`ajouter_a_la_liste_attente` ? Cela revient à se demander : quel est le chemin de
-la fonction `ajouter_a_la_liste_attente` ? Dans l'encart 7-3, nous avons un peu
-simplifié notre code en enlevant quelques modules et quelques fonctions. Nous
-allons voir deux façons d'appeler la fonction `ajouter_a_la_liste_attente` à
-partir d'une nouvelle fonction `manger_au_restaurant` définie dans la crate
+`ajouter_a_la_liste_attente` ? Cela revient à se demander : quel est le chemin
+de la fonction `ajouter_a_la_liste_attente` ? Dans l'encart 7-3, nous avons un
+peu simplifié notre code en enlevant quelques modules et quelques fonctions.
+Nous allons voir deux façons d'appeler la fonction `ajouter_a_la_liste_attente`
+à partir d'une nouvelle fonction `manger_au_restaurant` définie dans la crate
 racine. La fonction `manger_au_restaurant` fait partie de l'API publique de
 notre crate de bibliothèque, donc nous la marquons avec le mot-clé `pub`. Dans
 la section [”Exposer les chemins avec le mot-clé `pub`”][pub]<!-- ignore -->,
@@ -111,7 +111,7 @@ pub fn manger_au_restaurant() {
 absolute and relative paths</span>
 -->
 
-<span class="caption">Encart 7-3 : Appeler la fonction
+<span class="caption">Encart 7-3 : appel à la fonction
 `ajouter_a_la_liste_attente` en utilisant un chemin absolu et relatif</span>
 
 <!--
@@ -174,18 +174,18 @@ likely to move code definitions and item calls independently of each other.
 -->
 
 Choisir entre utiliser un chemin relatif ou absolu sera une décision que vous
-ferez en fonction de votre projet. Le choix se fera en fonction de si vous
-êtes susceptible de déplacer la définition de l'élément souhaité séparément ou
-en même temps que le code qui l'utilise. Par exemple, si nous déplaçons le
-module `salle_a_manger` ainsi que la fonction `manger_au_restaurant` dans un
-module qui s'appelle `experience_client`, nous aurons besoin de mettre à jour
-le chemin absolu vers `ajouter_a_la_liste_attente`, mais le chemin relatif
-restera valide. Cependant, si nous avions déplacé uniquement la fonction
-`manger_au_restaurant` dans un module `repas` séparé, le chemin absolu de
-l'appel à `ajouter_a_la_liste_attente` restera le même, mais le chemin relatif
-aura besoin d'être mis à jour. Notre préférence est d'utiliser un chemin absolu
-car il est plus facile de déplacer les codes de définitions et les appels aux
-éléments indépendamment les uns des autres.
+ferez en fonction de votre projet. Le choix se fera en fonction de si vous êtes
+susceptible de déplacer la définition de l'élément souhaité séparément ou en
+même temps que le code qui l'utilise. Par exemple, si nous déplaçons le module
+`salle_a_manger` ainsi que la fonction `manger_au_restaurant` dans un module qui
+s'appelle `experience_client`, nous aurons besoin de mettre à jour le chemin
+absolu vers `ajouter_a_la_liste_attente`, mais le chemin relatif restera valide.
+Cependant, si nous avions déplacé uniquement la fonction `manger_au_restaurant`
+dans un module `repas` séparé, le chemin absolu de l'appel à
+`ajouter_a_la_liste_attente` restera le même, mais le chemin relatif aura besoin
+d'être mis à jour. Notre préférence est d'utiliser un chemin absolu car il est
+plus facile de déplacer les codes de définitions et les appels aux éléments
+indépendamment les uns des autres.
 
 <!--
 Let’s try to compile Listing 7-3 and find out why it won’t compile yet! The
@@ -235,8 +235,8 @@ error[E0603]: module `accueil` is private
 Listing 7-3</span>
 -->
 
-<span class="caption">Encart 7-4 : Les erreurs de compilation à cause de la
-compilation du code de l'encart 7-3</span>
+<span class="caption">Encart 7-4 : les erreurs de compilation du code de
+l'encart 7-3</span>
 
 <!--
 The error messages say that module `hosting` is private. In other words, we
@@ -258,7 +258,7 @@ make an item like a function or struct private, you put it in a module.
 -->
 
 Les modules ne servent pas uniquement à organiser votre code. Ils définissent
-aussi les *limites de protection* de Rust : le code externe n'est pas autorisé
+aussi les *limites de protection* de Rust : le code externe n'est pas autorisé
 à connaître, à appeler ou à se fier à des éléments internes au module. Donc, si
 vous voulez rendre un élément privé comme une fonction ou une structure, vous
 devez le placer dans un module.
@@ -281,11 +281,11 @@ défaut. Les éléments dans un module parent ne peuvent pas utiliser les élém
 privés dans les modules enfants, mais les éléments dans les modules enfants
 peuvent utiliser les éléments dans les modules parents. C'est parce que les
 modules enfants englobent et cachent les détails de leur implémentation, mais
-les modules enfants peuvent connaître dans quel contexte ils sont définis. Pour
-continuer la métaphore du restaurant, considérez que les règles de
-protection sont comme les cuisines d'un restaurant : ce qui s'y passe n'est
-pas connu des clients, mais les gestionnaires peuvent tout voir et tout faire
-dans le restaurant dans lequel ils travaillent.
+les modules enfants peuvent voir dans quel contexte ils sont définis. Pour
+continuer la métaphore du restaurant, considérez que les règles de protection
+sont comme les cuisines d'un restaurant : ce qui s'y passe n'est pas connu des
+clients, mais les gestionnaires peuvent tout voir et tout faire dans le
+restaurant dans lequel ils travaillent.
 
 <!--
 Rust chose to have the module system function this way so that hiding inner
@@ -364,7 +364,7 @@ pub fn manger_au_restaurant() {
 use it from `eat_at_restaurant`</span>
 -->
 
-<span class="caption">Encart 7-5 : Utiliser `pub` sur le module `accueil` permet
+<span class="caption">Encart 7-5 : utiliser `pub` sur le module `accueil` permet
 de l'utiliser dans `manger_au_restaurant`</span>
 
 <!--
@@ -425,12 +425,11 @@ module public doesn’t make its contents public. The `pub` keyword on a module
 only lets code in its ancestor modules refer to it.
 -->
 
-Que s'est-il passé ? Ajouter le mot-clé `pub` devant `mod accueil` rend
-public le module. Avec cette modification, si nous pouvons accéder à
-`salle_a_manger`, alors nous pouvons accéder à `accueil`. Mais le *contenu* de
-`accueil` reste privé ; rendre le module public ne rend pas son contenu public.
-Le mot-clé `pub` sur un module permet uniquement au code de ses parents d'y
-faire référence.
+Que s'est-il passé ? Ajouter le mot-clé `pub` devant `mod accueil` rend public
+le module. Avec cette modification, si nous pouvons accéder à `salle_a_manger`,
+alors nous pouvons accéder à `accueil`. Mais le *contenu* de `accueil` reste
+privé ; rendre le module public ne rend pas son contenu public. Le mot-clé `pub`
+sur un module permet uniquement au code de ses parents d'y faire référence.
 
 <!--
 The errors in Listing 7-6 say that the `add_to_waitlist` function is private.
@@ -447,8 +446,8 @@ Let’s also make the `add_to_waitlist` function public by adding the `pub`
 keyword before its definition, as in Listing 7-7.
 -->
 
-Rendons publique la fonction `ajouter_a_la_liste_attente`, en ajoutant le mot-clé
-`pub` devant sa définition, comme dans l'encart 7-7.
+Rendons publique la fonction `ajouter_a_la_liste_attente`, en ajoutant le
+mot-clé `pub` devant sa définition, comme dans l'encart 7-7.
 
 <!--
 <span class="filename">Filename: src/lib.rs</span>
@@ -498,7 +497,7 @@ and `fn add_to_waitlist` lets us call the function from
 `eat_at_restaurant`</span>
 -->
 
-<span class="caption">Encart 7-7 : Ajout du mot-clé `pub` devant `mod accueil`
+<span class="caption">Encart 7-7 : ajout du mot-clé `pub` devant `mod accueil`
 et `fn ajouter_a_la_liste_attente` pour nous permettre d'appeler la fonction à
 partir de `manger_au_restaurant`</span>
 
@@ -508,10 +507,9 @@ double-check why adding the `pub` keyword lets us use these paths in
 `add_to_waitlist` with respect to the privacy rules.
 -->
 
-Maintenant, le code va compiler ! Analysons les chemins relatifs et absolus
-et vérifions pourquoi l'ajout du mot-clé `pub` nous permet d'utiliser ces
-chemins dans `ajouter_a_la_liste_attente` tout en respectant les règles de
-protection.
+Maintenant, le code va compiler ! Analysons les chemins relatifs et absolus et
+vérifions pourquoi l'ajout du mot-clé `pub` nous permet d'utiliser ces chemins
+dans `ajouter_a_la_liste_attente` tout en respectant les règles de protection.
 
 <!--
 In the absolute path, we start with `crate`, the root of our crate’s module
@@ -580,10 +578,10 @@ function `fix_incorrect_order` calls the function `serve_order` by specifying
 the path to `serve_order` starting with `super`:
 -->
 
-Imaginons le code dans l'encart 7-8 qui représente le cas où le chef prépare une
-commande erronée et l'apporte personnellement au client. La fonction
-`corriger_commande_erronee` appelle la fonction `servir_commande` en commençant
-le chemin de `servir_commande` avec `super` :
+Imaginons le code dans l'encart 7-8 qui représente le cas où le chef corrige une
+commande erronée et l'apporte personnellement au client pour s'excuser. La
+fonction `corriger_commande_erronee` appelle la fonction `servir_commande` en
+commençant le chemin de `servir_commande` avec `super` :
 
 <!--
 <span class="filename">Filename: src/lib.rs</span>
@@ -611,7 +609,7 @@ mod back_of_house {
 fn servir_commande() {}
 
 mod cuisines {
-    fn preparer_commande_erronee() {
+    fn corriger_commande_erronee() {
         cuisiner_commande();
         super::servir_commande();
     }
@@ -626,7 +624,7 @@ mod cuisines {
 starting with `super`</span>
 -->
 
-<span class="caption">Encart 7-8 : Appel d'une fonction en utilisant un chemin
+<span class="caption">Encart 7-8 : appel d'une fonction en utilisant un chemin
 relatif qui commence par `super`</span>
 
 <!--
@@ -640,15 +638,14 @@ should we decide to reorganize the crate’s module tree. Therefore, we used
 gets moved to a different module.
 -->
 
-La fonction `preparer_commande_erronee` est dans le module `cuisines`, donc nous
+La fonction `corriger_commande_erronee` est dans le module `cuisines`, donc nous
 pouvons utiliser `super` pour nous rendre au module parent de `cuisines`, qui
 dans notre cas est `crate`, la racine. De là, nous cherchons `servir_commande`
 et nous la trouvons. Avec succès ! Nous pensons que le module `cuisines` et la
-fonction `servir_commande` vont toujours garder la même relation
-et devrons être déplacés ensemble si nous réorganisons l'arborescence de modules
-de la crate. Ainsi, nous avons utilisé `super` pour que nous ayons moins
-d'endroits où mettre à jour le code à l'avenir si le code est déplacé dans un
-module différent.
+fonction `servir_commande` vont toujours garder la même relation et devrons être
+déplacés ensemble si nous réorganisons l'arborescence de modules de la crate.
+Ainsi, nous avons utilisé `super` pour avoir moins de code à mettre à jour le
+code à l'avenir si le code est déplacé dans un module différent.
 
 <!--
 ### Making Structs and Enums Public
@@ -758,7 +755,7 @@ pub fn manger_au_restaurant() {
 private fields</span>
 -->
 
-<span class="caption">Encart 7-9 : Une structure avec certains champs publics et
+<span class="caption">Encart 7-9 : une structure avec certains champs publics et
 d'autres privés</span>
 
 <!--
@@ -771,8 +768,8 @@ line modifying the `seasonal_fruit` field value to see what error you get!
 
 Comme le champ `tartine_grillee` est public dans la structure
 `cuisines::PetitDejeuner`, nous pouvons lire et écrire dans le champ
-`tartine_grillee` à partir de `manger_au_restaurant` en utilisant `.`.
-Notez aussi que nous ne pouvons pas utiliser le champ `fruit_de_saison` dans
+`tartine_grillee` à partir de `manger_au_restaurant` en utilisant `.`. Notez
+aussi que nous ne pouvons pas utiliser le champ `fruit_de_saison` dans
 `manger_au_restaurant` car `fruit_de_saison` est privé. Essayez de dé-commenter
 la ligne qui tente de modifier la valeur du champ `fruit_de_saison` et voyez
 l'erreur que vous obtenez !
@@ -844,7 +841,7 @@ pub fn manger_au_restaurant() {
 variants public</span>
 -->
 
-<span class="caption">Encart 7-10 : On rend publique une énumération et cela
+<span class="caption">Encart 7-10 : on rend publique une énumération et cela
 rend aussi toutes ses variantes publiques</span>
 
 <!--
@@ -861,9 +858,9 @@ les variantes `Soupe` et `Salade` dans `manger_au_restaurant`. Les énumération
 ne sont pas très utiles si elles n'ont pas leurs variantes publiques ; et cela
 serait pénible d'avoir à marquer toutes les variantes de l'énumération avec
 `pub`, donc par défaut les variantes d'énumérations sont publiques. Les
-structures peuvent être utiles sans avoir de champs publics, donc les champs
-des structures sont tous privés par défaut, sauf si
-ces éléments sont marqués d'un `pub`.
+structures peuvent être utiles sans avoir de champs publics, donc les champs des
+structures sont tous privés par défaut, sauf si ces éléments sont marqués d'un
+`pub`.
 
 <!--
 There’s one more situation involving `pub` that we haven’t covered, and that is
