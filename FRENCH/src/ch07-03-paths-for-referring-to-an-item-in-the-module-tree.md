@@ -10,16 +10,16 @@ way we use a path when navigating a filesystem. If we want to call a function,
 we need to know its path.
 -->
 
-Pour indiquer à Rust où trouver un élément dans l'arborescence du module, nous
+Pour indiquer à Rust où trouver un élément dans l'arborescence de modules, nous
 utilisons un chemin à l'instar des chemins que nous utilisons lorsque nous
 naviguons dans un système de fichiers. Si nous voulons appeler une fonction,
-nous avons besoin de savoir son chemin.
+nous avons besoin de connaître son chemin.
 
 <!--
 A path can take two forms:
 -->
 
-Un chemin peut avoir deux formes :
+Il existe deux types de chemins :
 
 <!--
 * An *absolute path* starts from a crate root by using a crate name or a
@@ -30,7 +30,7 @@ Un chemin peut avoir deux formes :
 
 * Un *chemin absolu* qui commence à partir de la racine de la crate en utilisant
   le nom d'une crate, ou le mot `crate`.
-* Un *chemin relatif* qui commence à partir de notre module courant et qui
+* Un *chemin relatif* qui commence à partir du module courant et qui
   utilise `self`, `super`, ou un identificateur à l'intérieur du module.
 
 <!--
@@ -38,8 +38,8 @@ Both absolute and relative paths are followed by one or more identifiers
 separated by double colons (`::`).
 -->
 
-Les deux chemins absolus et relatifs sont suivis par un ou plusieurs
-identificateurs séparés par des doubles deux-points (`::`).
+Les chemins absolus et relatifs sont suivis par un ou plusieurs
+identificateurs séparés par `::`.
 
 <!--
 Let’s return to the example in Listing 7-1. How do we call the
@@ -55,7 +55,7 @@ in a bit.
 -->
 
 Reprenons notre exemple de l'encart 7-1. Comment utiliserions-nous la fonction
-`ajouter_a_la_liste_attente` ? Cela revient à demander : quel est le chemin de
+`ajouter_a_la_liste_attente` ? Cela revient à se demander : quel est le chemin de
 la fonction `ajouter_a_la_liste_attente` ? Dans l'encart 7-3, nous avons un peu
 simplifié notre code en enlevant quelques modules et quelques fonctions. Nous
 allons voir deux façons d'appeler la fonction `ajouter_a_la_liste_attente` à
@@ -121,7 +121,7 @@ crate as `eat_at_restaurant`, which means we can use the `crate` keyword to
 start an absolute path.
 -->
 
-Au premier appel à la fonction `ajouter_a_la_liste_attente` dans
+Au premier appel de la fonction `ajouter_a_la_liste_attente` dans
 `manger_au_restaurant`, nous utilisons un chemin absolu. La fonction
 `ajouter_a_la_liste_attente` est définie dans la même crate que
 `manger_au_restaurant`, ce qui veut dire que nous pouvons utiliser le mot-clé
@@ -141,7 +141,7 @@ fichiers qui a la même structure, où nous pourrions utiliser le chemin
 `/salle_a_manger/accueil/ajouter_a_la_liste_attente` pour lancer le programme
 `ajouter_a_la_liste_attente`; utiliser le nom `crate` pour partir de la crate
 racine revient à utiliser `/` pour partir de la racine de votre système de
-fichier dans votre invite de commande.
+fichiers dans votre invite de commande.
 
 <!--
 The second time we call `add_to_waitlist` in `eat_at_restaurant`, we use a
@@ -155,7 +155,7 @@ path is relative.
 Lors du second appel à `ajouter_a_la_liste_attente` dans `manger_au_restaurant`,
 nous utilisons un chemin relatif. Le chemin commence par `salle_a_manger`, le
 nom du module qui est défini au même niveau que `manger_au_restaurant` dans
-l'arborescence de module. Ici, l'équivalent en terme de système de fichier
+l'arborescence de modules. Ici, l'équivalent en terme de système de fichier
 serait le chemin `salle_a_manger/accueil/ajouter_a_la_liste_attente`. Commencer
 par un nom signifie que le chemin est relatif.
 
@@ -258,7 +258,7 @@ make an item like a function or struct private, you put it in a module.
 -->
 
 Les modules ne servent pas uniquement à organiser votre code. Ils définissent
-aussi les *limites de protection* de Rust : le code externe n'est pas autorisée
+aussi les *limites de protection* de Rust : le code externe n'est pas autorisé
 à connaître, à appeler ou à se fier à des éléments internes au module. Donc, si
 vous voulez rendre un élément privé comme une fonction ou une structure, vous
 devez le placer dans un module.
@@ -277,13 +277,13 @@ see and do everything in the restaurant in which they operate.
 
 La protection avec Rust fait en sorte que tous les éléments (fonctions,
 méthodes, structures, énumérations, modules et constantes) sont privés par
-défaut. Les éléments dans un module parent ne peuvent utiliser les éléments
-privés dans les modules enfant, mais les éléments dans les modules enfants
+défaut. Les éléments dans un module parent ne peuvent pas utiliser les éléments
+privés dans les modules enfants, mais les éléments dans les modules enfants
 peuvent utiliser les éléments dans les modules parents. C'est parce que les
-modules enfant englobent et cachent leurs détails de leur implémentation, mais
+modules enfants englobent et cachent les détails de leur implémentation, mais
 les modules enfants peuvent connaître dans quel contexte ils sont définis. Pour
-continuer avec la métaphore du restaurant, considérez que les règles de
-protection comme la partie cuisines d'un restaurant : ce qui s'y passe n'est
+continuer la métaphore du restaurant, considérez que les règles de
+protection sont comme les cuisines d'un restaurant : ce qui s'y passe n'est
 pas connu des clients, mais les gestionnaires peuvent tout voir et tout faire
 dans le restaurant dans lequel ils travaillent.
 
@@ -298,8 +298,8 @@ keyword to make an item public.
 Rust a décidé de faire fonctionner le système de modules de façon à ce que les
 détails d'implémentation interne sont cachés par défaut. Ainsi, vous savez
 quelles parties du code interne vous pouvez changer sans casser le code externe.
-Mais vous pouvez exposer aux parents des parties internes des modules enfant en
-utilisant le mot-clé `pub` afin de le rendre public.
+Mais vous pouvez exposer aux parents des parties internes des modules enfants en
+utilisant le mot-clé `pub` afin de les rendre public.
 
 <!--
 ### Exposing Paths with the `pub` Keyword
@@ -316,7 +316,7 @@ access to the `add_to_waitlist` function in the child module, so we mark the
 
 Retournons à l'erreur de l'encart 7-4 qui nous informe que le module `accueil`
 est privé. Nous voulons que la fonction `manger_au_restaurant` du module parent
-ai accès à la fonction `ajouter_a_la_liste_attente` du module enfant, donc nous
+ait accès à la fonction `ajouter_a_la_liste_attente` du module enfant, donc nous
 utilisons le mot-clé `pub` sur le module `accueil`, comme dans l'encart 7-5.
 
 <!--
@@ -364,7 +364,7 @@ pub fn manger_au_restaurant() {
 use it from `eat_at_restaurant`</span>
 -->
 
-<span class="caption">Encart 7-5 : Utiliser `pub` sur le module `accueil` afin
+<span class="caption">Encart 7-5 : Utiliser `pub` sur le module `accueil` permet
 de l'utiliser dans `manger_au_restaurant`</span>
 
 <!--
@@ -425,7 +425,7 @@ module public doesn’t make its contents public. The `pub` keyword on a module
 only lets code in its ancestor modules refer to it.
 -->
 
-Que s'est-il passé ? Ajouter le mot-clé `pub` devant le `mod accueil` rend
+Que s'est-il passé ? Ajouter le mot-clé `pub` devant `mod accueil` rend
 public le module. Avec cette modification, si nous pouvons accéder à
 `salle_a_manger`, alors nous pouvons accéder à `accueil`. Mais le *contenu* de
 `accueil` reste privé ; rendre le module public ne rend pas son contenu public.
@@ -447,7 +447,7 @@ Let’s also make the `add_to_waitlist` function public by adding the `pub`
 keyword before its definition, as in Listing 7-7.
 -->
 
-Rendons public la fonction `ajouter_a_la_liste_attente`, en ajoutant le mot-clé
+Rendons publique la fonction `ajouter_a_la_liste_attente`, en ajoutant le mot-clé
 `pub` devant sa définition, comme dans l'encart 7-7.
 
 <!--
@@ -508,7 +508,7 @@ double-check why adding the `pub` keyword lets us use these paths in
 `add_to_waitlist` with respect to the privacy rules.
 -->
 
-Maintenant, le code va se compiler ! Analysons les chemins relatifs et absolus
+Maintenant, le code va compiler ! Analysons les chemins relatifs et absolus
 et vérifions pourquoi l'ajout du mot-clé `pub` nous permet d'utiliser ces
 chemins dans `ajouter_a_la_liste_attente` tout en respectant les règles de
 protection.
@@ -582,7 +582,7 @@ the path to `serve_order` starting with `super`:
 
 Imaginons le code dans l'encart 7-8 qui représente le cas où le chef prépare une
 commande erronée et l'apporte personnellement au client. La fonction
-`preparer_commande_erronee` appelle la fonction `servir_commande` en commençant
+`corriger_commande_erronee` appelle la fonction `servir_commande` en commençant
 le chemin de `servir_commande` avec `super` :
 
 <!--
@@ -644,9 +644,9 @@ La fonction `preparer_commande_erronee` est dans le module `cuisines`, donc nous
 pouvons utiliser `super` pour nous rendre au module parent de `cuisines`, qui
 dans notre cas est `crate`, la racine. De là, nous cherchons `servir_commande`
 et nous la trouvons. Avec succès ! Nous pensons que le module `cuisines` et la
-fonction `servir_commande` vont toujours avoir la même relation l'un et l'autre
+fonction `servir_commande` vont toujours garder la même relation
 et devrons être déplacés ensemble si nous réorganisons l'arborescence de modules
-de la caisse. Ainsi, nous avons utilisé `super` pour que nous ayons moins
+de la crate. Ainsi, nous avons utilisé `super` pour que nous ayons moins
 d'endroits où mettre à jour le code à l'avenir si le code est déplacé dans un
 module différent.
 
@@ -654,7 +654,7 @@ module différent.
 ### Making Structs and Enums Public
 -->
 
-### Rendre publique des structures et des énumérations
+### Rendre publiques des structures et des énumérations
 
 <!--
 We can also use `pub` to designate structs and enums as public, but there are a
@@ -741,7 +741,7 @@ pub fn manger_au_restaurant() {
     // On commande un petit-déjeuner en été avec tartine grillée au seigle
     let mut repas = cuisines::PetitDejeuner::en_ete("seigle");
     // On change d'avis sur le pain que nous souhaitons
-    repas.PetitDejeuner = String::from("blé");
+    repas.tartine_grillée = String::from("blé");
     println!( "Je voudrait une tartine grillée au {}, s'il vous plaît.",
               repas.tartine_grillee);
 
@@ -771,9 +771,9 @@ line modifying the `seasonal_fruit` field value to see what error you get!
 
 Comme le champ `tartine_grillee` est public dans la structure
 `cuisines::PetitDejeuner`, nous pouvons lire et écrire dans le champ
-`tartine_grillee` à partir de `manger_au_restaurant` en utilisant le point.
+`tartine_grillee` à partir de `manger_au_restaurant` en utilisant `.`.
 Notez aussi que nous ne pouvons pas utiliser le champ `fruit_de_saison` dans
-`manger_au_restaurant` car `fruit_de_saison`est privé. Essayez de dé-commenter
+`manger_au_restaurant` car `fruit_de_saison` est privé. Essayez de dé-commenter
 la ligne qui tente de modifier la valeur du champ `fruit_de_saison` et voyez
 l'erreur que vous obtenez !
 
@@ -786,7 +786,7 @@ have such a function, we couldn’t create an instance of `Breakfast` in
 `seasonal_fruit` field in `eat_at_restaurant`.
 -->
 
-Aussi, remarquez que le comme `cuisines::PetitDejeuner` a un champ privé, la
+Aussi, remarquez que comme `cuisines::PetitDejeuner` a un champ privé, la
 structure a besoin de fournir une fonction publique qui construit une instance
 de `PetitDejeuner` (que nous avons nommé `en_ete` ici). Si `PetitDejeuner`
 n'avait pas une fonction comme celle-ci, nous ne pourrions pas créer une
@@ -862,7 +862,7 @@ ne sont pas très utiles si elles n'ont pas leurs variantes publiques ; et cela
 serait pénible d'avoir à marquer toutes les variantes de l'énumération avec
 `pub`, donc par défaut les variantes d'énumérations sont publiques. Les
 structures peuvent être utiles sans avoir de champs publics, donc les champs
-de structures ont pour règle générale de rendre tout privé par défaut, sauf si
+des structures sont tous privés par défaut, sauf si
 ces éléments sont marqués d'un `pub`.
 
 <!--
