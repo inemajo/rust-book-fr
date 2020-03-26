@@ -20,4 +20,4 @@
 
 - [Utiliser les structures pour structurer des données apparentées](ch05-00-structs.md)
 
-- [Importer des chemins dans la portée avec le mot-clé `use`](ch07-04-bringing-paths-into-scope-with-the-use-keyword.md)
+- [Importer des chemins dans la portée via le mot-clé `use`](ch07-04-bringing-paths-into-scope-with-the-use-keyword.md)

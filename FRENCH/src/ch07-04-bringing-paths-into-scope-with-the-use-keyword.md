@@ -2,7 +2,7 @@
 ## Bringing Paths into Scope with the `use` Keyword
 -->
 
-## Importer des chemins dans la portée avec le mot-clé `use`
+## Importer des chemins dans la portée via le mot-clé `use`
 
 <!--
 It might seem like the paths we’ve written to call functions so far are
@@ -17,11 +17,11 @@ they’re local items with the `use` keyword.
 Les chemins que nous avons créés peuvent désormais paraître génants car trop
 longs et répétitifs. Par exemple, dans l'encart 7-7, si nous avions choisi
 d'utiliser le chemin absolu ou relatif pour la fonction
-`ajouter_a_la_liste_attente`, à chaque fois que nous voullions appeler
 `ajouter_a_la_liste_attente`, nous devrions aussi écrire `salle_a_manger` et
-`accueil`. Heureusement, il existe une solution pour simplifier ce cheminement.
-Nous pouvons importer un chemin dans la portée et ensuite appeler les éléments
-de ce chemin comme s'ils étaient des éléments locaux grâce au mot-clé `use`.
+`accueil` à chaque fois que nous voullions appeler `ajouter_a_la_liste_attente`.
+Heureusement, il existe une solution pour simplifier ce cheminement.
+Nous pouvons importer un chemin dans la portée et appeler ensuite les éléments
+de ce chemin comme s'ils étaient des locaux grâce au mot-clé `use`.
 
 <!--
 In Listing 7-11, we bring the `crate::front_of_house::hosting` module into the
@@ -82,8 +82,8 @@ pub fn manger_au_restaurant() {
 `use`</span>
 -->
 
-<span class="caption">Encart 7-11 : Importer un module dans la portée grâce à
-`use`</span>
+<span class="caption">Encart 7-11 : importer un module dans la portée via `use`
+</span>
 
 <!--
 Adding `use` and a path in a scope is similar to creating a symbolic link in
@@ -93,11 +93,11 @@ module had been defined in the crate root. Paths brought into scope with `use`
 also check privacy, like any other paths.
 -->
 
-Utiliser dans une portée un `use` et un chemin revient à créer un lien
-symbolique dans un système de fichier. Grâce à l'ajout de
+Dans une portée, utiliser un `use` et un chemin revient à créer un lien
+symbolique dans le système de fichier. Grâce à l'ajout de
 `use crate::salle_a_manger::accueil` dans la crate racine, `accueil` est
-maintenant un nom valide dans cette portée, comme si le module `accueil` ai été
-défini dans la crate racine. Les chemins importés dans la portée avec `use`
+maintenant un nom valide dans cette portée, comme si le module `accueil` avait
+été défini dans la crate racine. Les chemins importés dans la portée via `use`
 sont soumis au principe de protection, tout comme les autres chemins.
 
 <!--
@@ -157,7 +157,7 @@ pub fn manger_au_restaurant() {
 a relative path</span>
 -->
 
-<span class="caption">Encart 7-12 : Importer un module dans la portée avec `use`
+<span class="caption">Encart 7-12 : importer un module dans la portée avec `use`
 et un chemin relatif</span>
 
 <!--
@@ -226,7 +226,7 @@ pub fn manger_au_restaurant() {
 into scope with `use`, which is unidiomatic</span>
 -->
 
-<span class="caption">Encart 7-13 : Importer la fonction
+<span class="caption">Encart 7-13 : importer la fonction
 `ajouter_a_la_liste_attente` dans la portée avec `use`, ce qui n'est pas idéal
 </span>
 
@@ -240,12 +240,12 @@ defined while still minimizing repetition of the full path. The code in Listing
 -->
 
 Bien que l'encart 7-11 et 7-13 accomplissent la même tâche, l'encart 7-11 est la
-façon idéale d'importer une fonction dans la portée via `use`. Importer le
-module parent de la fonction dans notre portée avec `use` de manière à avoir à
-préciser le module parent quand nous appelons la fonction précise clairement que
-la fonction n'est pas définie localement, tout en minimisant la répétition de
-tout le chemin. Il n'est pas très clair dans l'encart 7-13 où est défini
-`ajouter_a_la_liste_attente`.
+façon idéale d'importer une fonction dans la portée via `use`. Le fait
+d'importer le module parent de la fonction dans notre portée avec `use`, de
+sorte que nous ayons à préciser le module parent quand nous appelons la fonction
+précise clairement que la fonction n'est pas définie localement, tout en
+minimisant la répétition du chemin complet. Nous ne pouvons pas en déduire
+facilement où est défini `ajouter_a_la_liste_attente` dans l'encart 7-13.
 
 <!--
 On the other hand, when bringing in structs, enums, and other items with `use`,
@@ -254,10 +254,10 @@ to bring the standard library’s `HashMap` struct into the scope of a binary
 crate.
 -->
 
-Mais d'un autre côté, quand nous importons des structures, des énumérations, et
-d'autres éléments avec `use`, il est idéal de préciser le chemin complet.
-L'encart 7-14 montre la manière idéale d'importer la structure `HashMap` de la
-bibliothèque standard dans la portée d'une crate binaire.
+Cela dit, lorsque nous importons des structures, des énumérations, et d'autres
+éléments avec `use`, il est idéal de préciser le chemin complet. L'encart 7-14
+montre la manière idéale d'importer la structure `HashMap` de la bibliothèque
+standard dans la portée d'une crate binaire.
 
 <!--
 <span class="filename">Filename: src/main.rs</span>
@@ -279,7 +279,7 @@ fn main() {
 idiomatic way</span>
 -->
 
-<span class="caption">Encart 7-14 : Import de `HashMap` dans la portée de
+<span class="caption">Encart 7-14 : import de `HashMap` dans la portée de
 manière idéale</span>
 
 <!--
@@ -298,11 +298,11 @@ shows how to bring two `Result` types into scope that have the same name but
 different parent modules and how to refer to them.
 -->
 
-Il y a une exception à cette pratique qui est que si nous importons deux
-éléments avec le même nom dans la portée avec l'instruction `use`, car Rust
-n'autorise pas cela. L'encart 7-15 nous montre comment importer deux types
-`Result` qui ont le même nom mais qui ont des modules parents distincts, et
-comment s'adresser à eux.
+Il y a une exception à cette pratique : nous ne pouvons pas utiliser
+l'instruction `use` pour importer deux éléments avec le même nom dans la portée,
+car Rust ne l'autorise pas. L'encart 7-15 nous montre comment importer puis
+utiliser deux types `Result` ayant le même nom mais dont leurs modules parents
+sont distincts.
 
 <!--
 <span class="filename">Filename: src/lib.rs</span>
@@ -347,7 +347,7 @@ fn fonction2() -> io::Result<()> {
 the same scope requires using their parent modules.</span>
 -->
 
-<span class="caption">Encart 7-15 : L'import de deux types qui ont le même nom
+<span class="caption">Encart 7-15 : l'import de deux types ayant le même nom
 dans la même portée nécessite d'utiliser leurs modules parents.</span>
 
 <!--
@@ -367,7 +367,7 @@ utiliserions en demandant `Result`.
 ### Providing New Names with the `as` Keyword
 -->
 
-### Renommer des éléments avec le mot-clé `use`
+### Renommer des éléments avec le mot-clé `as`
 
 <!--
 There’s another solution to the problem of bringing two types of the same name
@@ -376,11 +376,11 @@ local name, or alias, for the type. Listing 7-16 shows another way to write the
 code in Listing 7-15 by renaming one of the two `Result` types using `as`.
 -->
 
-Il y a aussi une autre solution au problème d'avoir deux types du même nom dans
-la même portée à cause de `use` : après le chemin, nous pouvons rajouter `as` et
-un nouveau nom local, ou alias, sur le type. L'encart 7-16 nous montre une autre
-façon d'écrire le code de l'encart 7-15 en renommant un des deux types `Result`
-en utilisant `as`.
+Il y a une autre solution au fait d'avoir deux types du même nom dans la même
+portée à cause de `use` : après le chemin, nous pouvons rajouter `as` suivi d'un
+nouveau nom local, ou alias, sur le type. L'encart 7-16 nous montre une autre
+façon d'écrire le code de l'encart 7-15 en utilisant `as` pour renommant un des
+deux types `Result`.
 
 <!--
 <span class="filename">Filename: src/lib.rs</span>
@@ -425,7 +425,7 @@ fn fonction2() -> IoResult<()> {
 scope with the `as` keyword</span>
 -->
 
-<span class="caption">Encart 7-16 : Renommer un type lorsqu'il est importé dans
+<span class="caption">Encart 7-16 : renommer un type lorsqu'il est importé dans
 la portée, avec le mot-clé `as`</span>
 
 <!--
@@ -456,19 +456,19 @@ their scope.
 -->
 
 Lorsque nous importons un élément dans la portée avec le mot-clé `use`, son nom
-dans la nouvelle portée est privé. Afin de permettre au code d'utiliser ce nom
-comme s'il était défini dans cette portée de code, nous pouvons associer `pub`
-et `use`. Cette technique est appelée *re-exporter* car nous importons un
+dans la nouvelle portée est privé. Pour permettre au code appelant d'utiliser ce
+nom comme s'il était défini dans cette portée, nous pouvons associer `pub` et
+`use`. Cette technique est appelée *re-exporter* car nous importons un
 élément dans la portée, mais nous rendons aussi cet élément disponible aux
-autres en l'important dans leurs portées.
+portées des autres.
 
 <!--
 Listing 7-17 shows the code in Listing 7-11 with `use` in the root module
 changed to `pub use`.
 -->
 
-L'encart 7-17 nous montre le code de l'encart 7-11 où le `use` dans le module
-racine a été remplacé par `pub use`.
+L'encart 7-17 nous montre le code de l'encart 7-11 où le `use` du module racine
+a été remplacé par `pub use`.
 
 <!--
 <span class="filename">Filename: src/lib.rs</span>
@@ -517,7 +517,7 @@ pub fn manger_au_restaurant() {
 from a new scope with `pub use`</span>
 -->
 
-<span class="caption">Encart 7-17 : Rendre un élément disponible pour n'importe
+<span class="caption">Encart 7-17 : rendre un élément disponible pour n'importe
 quel code qui l'importera dans sa portée, avec `pub use`</span>
 
 <!--
@@ -567,10 +567,10 @@ package called `rand` to get random numbers. To use `rand` in our project, we
 added this line to *Cargo.toml*:
 -->
 
-Au chapitre 2, nous avons développé un projet de jeu de devinettes qui utilisait
-un paquet externe qui s'appelle `rand` afin d'obtenir des nombres aléatoires.
+Dans le chapitre 2, nous avions développé un projet de jeu de devinettes qui
+utilisait le paquet externe `rand` afin d'obtenir des nombres aléatoires.
 Pour pouvoir utiliser `rand` dans notre projet, nous avons ajouté cette ligne
-dans le *Cargo.toml* :
+dans *Cargo.toml* :
 
 <!-- When updating the version of `rand` used, also update the version of
 `rand` used in these files so they all match:
@@ -637,8 +637,8 @@ involves these same steps: listing them in your package’s *Cargo.toml* file an
 using `use` to bring items into scope.
 -->
 
-Les membres de la communauté Rust ont rendu de nombreux paquets à disposition
-dans [crates.io](https://crates.io/), et utiliser l'un d'en eux dans votre
+Les membres de la communauté Rust ont mis à disposition de nombreux paquets
+dans [crates.io](https://crates.io/), et utiliser l'un d'entre eux dans votre
 paquet implique toujours ces mêmes étapes : les lister dans le fichier
 *Cargo.toml* de votre paquet et utiliser `use` pour les importer dans la portée.
 
@@ -652,10 +652,10 @@ with `HashMap` we would use this line:
 
 Notez que la bibliothèque standard (`std`) est aussi une crate qui est externe à
 notre paquet. Comme la bibliothèque standard est livrée avec le langage Rust,
-nous n'avons pas à changer *Cargo.toml* pour y inclure `std`. Mais nous avons
-de l'utiliser avec `use` pour importer les éléments qu'y s'y trouvent dans la
-portée de notre paquet. Par exemple, pour `HashMap` nous pourrions utiliser
-cette ligne :
+nous n'avons pas à modifier le *Cargo.toml* pour y inclure `std`. Mais nous
+devons utiliser `use` pour importer les éléments qu'y se trouvent dans la portée
+de notre paquet. Par exemple, pour `HashMap` nous pourrions utiliser cette
+ligne :
 
 ```rust
 use std::collections::HashMap;
@@ -682,11 +682,11 @@ files. For example, these two `use` statements we had in the Guessing Game in
 Listing 2-4 bring items from `std` into scope:
 -->
 
-Si vous utilisez de nombreux éléments qui sont définis dans un même paquet ou
-dans un même module, lister chaque élément sur sa propre ligne va prendre
-beaucoup d'espace vertical dans vos fichiers. Par exemple, ces deux instructions
-`use` que nous avions dans le jeu de devinettes, dans l'encart 2-4, importaient
-des éléments de `std` dans la portée :
+Si vous utilisez de nombreux éléments définis dans un même paquet ou dans un
+même module, lister chaque élément sur sa propre ligne prendra beaucoup d'espace
+vertical dans vos fichiers. Par exemple, ces deux instructions `use`, que nous
+avions dans le jeu de devinettes, dans l'encart 2-4, importaient des éléments de
+`std` dans la portée :
 
 <!--
 <span class="filename">Filename: src/main.rs</span>
@@ -717,9 +717,8 @@ differ, as shown in Listing 7-18.
 
 A la place, nous pouvons utiliser des chemins imbriqués afin d'importer les
 mêmes éléments dans la portée en une seule ligne. Nous pouvons faire cela en
-indiquant la partie commune du chemin, suivi de deux double-points, et ensuite
-des accolades autour d'une liste d'éléments du chemin qui diffèrent, comme dans
-l'encart 7-18 :
+indiquant la partie commune du chemin, suivi de deux double-points, puis
+d'accolades autour d'une liste d'éléments du chemin, comme dans l'encart 7-18 :
 
 <!--
 <span class="filename">Filename: src/main.rs</span>
@@ -744,7 +743,7 @@ use std::{cmp::Ordering, io};
 items with the same prefix into scope</span>
 -->
 
-<span class="caption">Encart 7-18 : Utiliser un chemin imbriqué pour importer
+<span class="caption">Encart 7-18 : utiliser un chemin imbriqué pour importer
 plusieurs éléments avec le même préfixe dans la portée</span>
 
 <!--
@@ -786,7 +785,7 @@ use std::io::Write;
 of the other</span>
 -->
 
-<span class="caption">Encart 7-19 : Deux instructions `use` où l'une est un
+<span class="caption">Encart 7-19 : deux instructions `use` où l'une est un
 sous-chemin de l'autre</span>
 
 <!--
@@ -814,7 +813,7 @@ use std::io::{self, Write};
 one `use` statement</span>
 -->
 
-<span class="caption">Encart 7-20 : Imbrication des chemins de l'encart 7-19
+<span class="caption">Encart 7-20 : imbrication des chemins de l'encart 7-19
 dans une seule instruction `use`</span>
 
 <!--
@@ -834,8 +833,9 @@ If we want to bring *all* public items defined in a path into scope, we can
 specify that path followed by `*`, the glob operator:
 -->
 
-Si nous voulons importer dans la portée *tous* les éléments publics définis dans
-un chemin, nous pouvons indiquer ce chemin suivi par `*`, l'opérateur global :
+Si nous voulons importer, dans la portée, *tous* les éléments publics définis
+dans un chemin, nous pouvons indiquer ce chemin suivi par `*`, l'opérateur
+global :
 
 <!--
 ```rust
@@ -868,12 +868,13 @@ library documentation](../std/prelude/index.html#other-preludes)<!-- ignore -- >
 for more information on that pattern.
 -->
 
-L'opérateur global est parfois utilisé lorsque nous testons, afin d'importer
-tout ce qui a à tester dans le module `tests` ; nous verrons cela dans une
-section du [chapitre 11][writing-tests]. L'opérateur global est parfois aussi
-utilisé pour l'étape préliminaire : rendez-vous à [la documentation de la
-bibliothèque standard](https://doc.rust-lang.org/std/prelude/index.html#other-preludes)<!-- ignore -- >
-pour plus d'informations sur cette méthode.
+L'opérateur global est souvent utilisé lorsque nous écrivons des tests, pour
+importer tout ce qui a à tester dans le module `tests` ; nous verrons cela dans
+une section du [chapitre 11][writing-tests]. L'opérateur global est parfois
+aussi utilisé pour l'étape préliminaire : rendez-vous dans [la documentation de
+la bibliothèque
+standard](https://doc.rust-lang.org/std/prelude/index.html#other-preludes)<!--
+ignore --> pour plus d'informations sur cela.
 
 <!--
 [rand]: ch02-00-guessing-game-tutorial.html#generating-a-random-number
