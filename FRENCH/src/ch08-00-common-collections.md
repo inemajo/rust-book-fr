@@ -65,4 +65,4 @@ as what makes each special.
 -->
 
 Nous allons voir comment créer et modifier les vecteurs, les String, et les
-tables de hachages, et étudier leurs différences.
+tables de hachage, et étudier leurs différences.
