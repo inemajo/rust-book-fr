@@ -100,7 +100,7 @@ Consider a short program that finds the largest number in a list, as shown in
 Listing 10-1.
 -->
 
-Imaginons un petit programme qui trouve le nombre le gros dans une liste, comme
+Imaginons un petit programme qui trouve le nombre le plus gros dans une liste, comme
 dans l'encart 10-1.
 
 <!--
